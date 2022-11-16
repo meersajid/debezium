@@ -1,6 +1,5 @@
 # version isn't needed as of 2020 for docker compose CLI. 
 # All 2.x and 3.x features supported
-version: '2'
 services:
   zookeeper:
     image: quay.io/debezium/zookeeper:2.0
@@ -16,8 +15,6 @@ services:
       - priv-network
     ports:
      - 9092:9092
-    links:
-     - zookeeper
     environment:
      - ZOOKEEPER_CONNECT=zookeeper:2181
   mysql:
@@ -36,9 +33,6 @@ services:
       - priv-network
     ports:
       - 8083:8083
-    links:
-      - kafka
-      - mysql
     environment:
       - BOOTSTRAP_SERVERS=kafka:9092
       - GROUP_ID=1
